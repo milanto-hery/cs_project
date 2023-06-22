@@ -8,14 +8,12 @@ import os
 
 import numpy as np
 import numpy.random as rand
-import matplotlib.pyplot as plt
 import scipy.fftpack as spfft
-import seaborn as sns
 import cvxpy as cvx
 from sklearn.linear_model import Lasso, OrthogonalMatchingPursuit
 
 
-# Generating dct and idct for 2D
+# Generating dct and idct for 2D because SciPy does not provide the 2D versions
 
 def dct2(x):
     return spfft.dct(spfft.dct(x.T, norm='ortho', axis=0).T, norm='ortho', axis=0)
@@ -27,14 +25,16 @@ def idct2(x):
 class CS:
     
     def compress(self, spectrogram, R, seed):
-       
-        # Get the shape of the original spectrogram
-        #print("Input shape_: ", spectrogram.shape)
+        """
+        Function for compressing spectrograms by sampling from a specific percentage of the original.
         
+        R: The percentage value from which we would like to sample from the original
+        """
+       
+        # Get the height and width of the image spectrogram    
         ny,nx,_=spectrogram.shape
-        #print('ny, nx : ', ny,nx)
     
-        #Get the number of sample
+        # Get the number of samples
         m = round(nx * ny * R) # e.g: R=0.25 => 25% of samples
         rand.seed(seed)
         ri_vector = rand.choice(nx * ny, m, replace=False) # random sample of indices
@@ -51,6 +51,18 @@ class CS:
         return y, A
     
     def reconstruct(self, y, A, ny, nx, solver):
+        """
+        Reconstructs the signal by using differents solvers to approximate the original signal.
+        
+        Problem: y=As
+
+        input:
+            y (ndarray): Compressed measurements.
+            A (ndarray): Sensing matrix.
+
+        Output:
+            s: sparse solution -> x: reconstructed signal after inverse trasformation of DCT2
+        """
         
         if solver == 'lasso':
             
@@ -63,26 +75,24 @@ class CS:
         
         elif solver == 'cvx':
             
-            vx = cvx.Variable(nx*ny)
+            s = cvx.Variable(nx*ny)
             objective = cvx.Minimize(cvx.norm(vx, 1))
-            constraint = [A*vx == y]
+            constraint = [A*s == y]
             prob = cvx.Problem(objective, constraint)
             res = prob.solve(verbose=False, solver='ECOS')
-            beta = np.array(vx.value).squeeze()
-            x1 = idct2(beta.reshape((nx, ny)).T)
-            x = np.reshape(x1, (ny, nx, 1))
-            #print('Output shape: ',y2.shape)
-            
+            s1 = np.array(s.value).squeeze()
+            x0 = idct2(s1.reshape((nx, ny)).T)
+            x = np.reshape(x0, (ny, nx, 1))
+                      
             return x
         
         elif solver == 'omp':
                                                              
             prob = OrthogonalMatchingPursuit()
             prob.fit(A, y)
-            s = idct2(prob.coef_.reshape((nx, ny)).T)
-            x = np.reshape(s, (ny, nx, 1))
-            #print('Output shape: ',y2.shape)
-  
+            x_omp = idct2(prob.coef_.reshape((nx, ny)).T)
+            x = np.reshape(x_omp, (ny, nx, 1))
+            
             return x
         else:
             raise ValueError("Please specify solver!!!.")
