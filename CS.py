@@ -32,7 +32,7 @@ class CS:
         """
        
         # Get the height and width of the image spectrogram    
-        ny,nx,_=spectrogram.shape
+        ny,nx=spectrogram.shape
     
         # Get the number of samples
         m = round(nx * ny * R) # e.g: R=0.25 => 25% of samples
@@ -68,18 +68,19 @@ class CS:
             
             prob = Lasso(alpha=1e-5)
             prob.fit(A, y)
-            x_lasso = idct2(prob.coef_.reshape(nx, ny)).T
-            x = np.reshape(x_lasso, (ny, nx, 1))
+            s = prob.coef_
+            x_lasso = idct2(s.reshape(nx, ny)).T
+            x = np.reshape(x_lasso, (ny, nx))
             
             return x
         
         elif solver == 'cvx':
             
             s = cvx.Variable(nx*ny)
-            objective = cvx.Minimize(cvx.norm(vx, 1))
+            objective = cvx.Minimize(cvx.norm(s, 1))
             constraint = [A*s == y]
             prob = cvx.Problem(objective, constraint)
-            res = prob.solve(verbose=False, solver='ECOS')
+            res = prob.solve(verbose=False, solver='SCS')
             s1 = np.array(s.value).squeeze()
             x0 = idct2(s1.reshape((nx, ny)).T)
             x = np.reshape(x0, (ny, nx, 1))
@@ -90,38 +91,11 @@ class CS:
                                                              
             prob = OrthogonalMatchingPursuit()
             prob.fit(A, y)
-            x_omp = idct2(prob.coef_.reshape((nx, ny)).T)
+            s= prob.coef_
+            x_omp = idct2(s.reshape((nx, ny)).T)
             x = np.reshape(x_omp, (ny, nx, 1))
             
             return x
         else:
             raise ValueError("Please specify solver!!!.")
-            
-    def save_data_to_pickle(self, X_original_S, X_compressed_S, X_reconstructed_S, Y_values, start_index, end_index, 
-                            saved_output):
-        '''
-        Save all of the data to pickle files.
 
-        '''
-        if not os.path.exists(saved_output):
-            os.makedirs(saved_output)                                       
-        
-        outfile = open(os.path.join(saved_output, 'X_original_S#{}_{}.pkl'.format(start_index, end_index)),'wb')
-        pickle.dump(X_original_S, outfile, protocol=4)
-        outfile.close()
-        
-        outfile = open(os.path.join(saved_output, 'X_compressed_S#{}_{}.pkl'.format(start_index, end_index)),'wb')
-        pickle.dump(X_compressed_S, outfile, protocol=4)
-        outfile.close()
-
-        outfile = open(os.path.join(saved_output, 'X_reconstructed_S#{}_{}.pkl'.format(start_index, end_index)),'wb')
-        pickle.dump(X_reconstructed_S, outfile, protocol=4)
-        outfile.close()
-        
-        outfile = open(os.path.join(saved_output, 'Y#{}_{}.pkl'.format(start_index, end_index)),'wb')
-        pickle.dump(Y_values, outfile, protocol=4)
-        outfile.close()
-        
-        
-        print(f'All data saved succesfully to {saved_output}')
-        print('===============================================================')
