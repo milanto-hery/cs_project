@@ -33,7 +33,7 @@ $ pip install -r requirements.txt
 - Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal
 - Run the main script
   
-  $ pythonmain.py
+  $ python3 main.py
   
 - The outputs automatically saved in the specified folder name (It should be pickle and zip files)
 
