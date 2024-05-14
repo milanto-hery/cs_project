@@ -32,7 +32,9 @@ $ pip install -r requirements.txt
 - Download the required data from this link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
 - Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal
 - Run the main script
+  
   $ pythonmain.py
+  
 - The outputs automatically saved in the specified folder name (It should be pickle and zip files)
 
 
