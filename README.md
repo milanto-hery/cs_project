@@ -1,10 +1,10 @@
 # Compressed Sensing for 2d
 
-This repository is used to create X, X_reconstructed and Y values which are spectrograms inputs to a neural network algorithm. 
-X represent the original spectrograms used for the baseline experiments and X_reconstructed created from the compressed data using compressed sensing techniques.
+This repository is used to create $X$, $X_{reconstructed}$ and $Y$ values which are spectrograms inputs to a neural network algorithm. 
+$X$ represent the original spectrograms used for the baseline experiments and $X_{reconstructed}$ created from the compressed data using compressed sensing techniques.
 
 Make sure you have additional folder contains Audio and Annotations. Annotated files (.svl) and the corresponding audio file (.wav) are read. 
-A number of segments are extracted to create the original dataset. A random sampling in compressed sensing is applied to X and give the compressed data as X_compressed, followed by recovery algorithm to get the final data $X_{reconstructed}$.
+A number of segments are extracted to create the original dataset. A random sampling in compressed sensing is applied to $X$ and give the compressed data as $X_{compressed}$, followed by recovery algorithm to get the final data $X_{reconstructed}$.
       
 ### Folder structure:
 
