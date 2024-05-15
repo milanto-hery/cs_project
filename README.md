@@ -30,7 +30,8 @@ Install dependencies in your terminal:
         $ git clone https://github.com/milanto-hery/cs_project.git
     
 2. Go to the directory containing the the scripts
-      $ cd cs_project/
+
+         $ cd cs_project/
    
 4.  Download the required data from this link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
        Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal:
