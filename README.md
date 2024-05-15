@@ -26,6 +26,9 @@ $ pip install -r requirements.txt
 
 ### How it works:
 - Download or clone this repository in your terminal
+  
+  $ git clone https://github.com/milanto-hery/cs_project.git
+    
 - Download the required data from this link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
 - Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal
 - Run the main script
