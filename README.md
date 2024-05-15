@@ -25,17 +25,22 @@ Install dependencies in your terminal:
 $ pip install -r requirements.txt             
 
 ### How it works:
-- Download or clone this repository in your terminal
+1. Download or clone this repository in your terminal
   
   $ git clone https://github.com/milanto-hery/cs_project.git
     
-- Download the required data from this link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
-- Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal
-- Run the main script
+2. cd directory
+3.  Download the required data from this link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
+ Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal:
+- Hainnan Gibbon: [Audio](https://drive.google.com/drive/folders/1xkFkqMIdceuwtHJzhvN3iooxIBVlbizf?usp=drive_link) , [Annotations](https://drive.google.com/drive/folders/1i_NRYObfRkUFPM9--brynGqJx9DQr5nV?usp=drive_link), [DataFiles](https://drive.google.com/drive/folders/1MfkSGr-U2PxwTPVByhy6Qj_1HIge0uG8?usp=drive_link)
+- Thyolo alethe:
+
+
+4. Run the main script
   
   $ python3 main.py
   
-- The outputs automatically saved in the specified folder name (It should be pickle and zip files)
+5. The outputs automatically saved in the specified folder name (It should be pickle and zip files)
 
 
          
