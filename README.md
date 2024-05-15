@@ -13,7 +13,7 @@ A number of segments are extracted to create the original dataset. A random samp
                   |── DataFiles/Training.txt
                   ├── main.py
                   ├── Preprocess_CS_2D.py
-                  ├── Preprocessing.py
+                  ├── AnnotationReade.py
                   |── CS.py
                   |── Settings.json  
                   └── CS_2D_output/
@@ -33,17 +33,16 @@ Install dependencies in your terminal:
 
          $ cd cs_project/
    
-4.  Download the required data from the following link to make sure you have all the requirements (You can have the Gibbon or Thyolo)
-       Extract the three folder Audio, Annotations and DataFiles and put inside this repository in your terminal:
+4. Download the required data from the following links to make sure you have all the requirements. (You can have the gibbon or thyolo). Extract the three folders Audio, Annotations, and DataFiles and put them inside the cs_project folder:
       - Hainan Gibbon: [Audio](https://drive.google.com/drive/folders/1xkFkqMIdceuwtHJzhvN3iooxIBVlbizf?usp=drive_link) , [Annotations](https://drive.google.com/drive/folders/1i_NRYObfRkUFPM9--brynGqJx9DQr5nV?usp=drive_link), [DataFiles](https://drive.google.com/drive/folders/1MfkSGr-U2PxwTPVByhy6Qj_1HIge0uG8?usp=drive_link)
       - Thyolo alethe: [Audio](https://drive.google.com/drive/folders/1ACsEKIUZz57mLoNKQm2n_d1HlO2uLcCa?usp=drive_link), [Annotations](https://drive.google.com/drive/folders/1XGeZOmrWyQdC4_435ZU9aQkzM4IH96KV?usp=drive_link), [DataFiles](https://drive.google.com/drive/folders/1-OIMR-GcVCx1Lqp4xOWy5Mhfe7RzXRve?usp=drive_link)
 
 
-5. Run the main script
+6. Run the main script
   
         $ python3 main.py
   
-6. The outputs automatically saved in the specified folder name (It should be pickle and zip files)
+7. The outputs automatically saved in the specified folder name (It should be pickle and zip files)
 
 
          
