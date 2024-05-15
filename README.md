@@ -8,7 +8,7 @@ A number of segments are extracted to create the original dataset. A random samp
       
 ### Folder structure
 
-                  |── \textbf{Audio}
+                  |── Audio
                   |── Annotations
                   |── DataFiles/Training.txt
                   ├── main.py
