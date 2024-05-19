@@ -30,21 +30,5 @@
     "solver_lasso": "lasso",
     "solver_omp": "omp",
     "solver_cvx": "cvx"
-  },
-  "another_species": {
-
-    "segment_duration" : 0,
-    "positive_class" : "[\"presence\"]" ,
-    "negative_class" : "[\"noise\"]" ,
-    "file_type" : "svl",
-    "audio_extension" : ".WAV",
-    "n_fft" : 1024,
-    "hop_length" : None,
-    "n_mels" : None ,
-    "f_min" : None,
-    "f_max" : None,
-    "solver_lasso": "lasso",
-    "solver_omp": "omp",
-    "solver_cvx": "cvx"
   }
 }
